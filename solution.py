@@ -22,12 +22,12 @@ def run(port: int =13331):
         response += b"Content-Type: text/html; charset=UTF-8\r\n\r\n"
         response += f.read()
         print(response)
-        conn.send(response)
+        conn.send(response.decode().encode("utf8"))
         conn.close()
     
     except FileNotFoundError:
       response = b'HTTP/1.1 404 File Not Found\r\n'
-      conn.send(response)
+      conn.send(response.decode().encode("utf8"))
       conn.close()
 
     except Exception as e:
