@@ -1,14 +1,14 @@
-import socket
+from socket import AF_INET, SOCK_STREAM, socket
 import sys
 
-def run(port: int =13331):
+def webServer(port: int =13331):
 
   host: str = "127.0.0.1"
-  server_socket: socket.SocketType = socket.socket()
+  server_socket: socket.SocketType = socket(AF_INET,SOCK_STREAM)
   server_socket.bind( (host, port) )
 
   while True:
-    server_socket.listen(1)
+    server_socket.listen(5)
     conn, address = server_socket.accept()
 
     try:
@@ -35,4 +35,4 @@ def run(port: int =13331):
 
 
 if __name__ == "__main__":
-  run( port=13331 )
+  webServer( port=13331 )
